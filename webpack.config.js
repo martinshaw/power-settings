@@ -24,3 +24,5 @@ module.exports = {
     port: 4000,
   },
 };
+
+// https://blog.logrocket.com/using-webpack-typescript/
