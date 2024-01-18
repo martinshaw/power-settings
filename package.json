@@ -2,9 +2,9 @@
   "name": "power-settings",
   "version": "0.0.1",
   "description": "VS Code-like settings management — Based on hierarchy-inheriting JSON files and JSON schema",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "webpack-dev-server --mode development",
+    "build" : "webpack --mode production"
   },
   "repository": {
     "type": "git",
@@ -20,5 +20,12 @@
   "bugs": {
     "url": "https://github.com/martinshaw/power-settings/issues"
   },
-  "homepage": "https://github.com/martinshaw/power-settings#readme"
+  "homepage": "https://github.com/martinshaw/power-settings#readme",
+  "devDependencies": {
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.3.3",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1"
+  }
 }
