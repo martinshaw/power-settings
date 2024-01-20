@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Import TS Example</title>
+    <script type="module">
+      import PowerSettings, {
+        PowerSettingsJsonObjectSource,
+        PowerSettingsTextSetting,
+      } from "../../src/index.ts";
+
+      const ps = new PowerSettings(
+        {},
+        (context) => [
+          new PowerSettingsJsonObjectSource(context, "Default", {
+            a: {
+              b: 1,
+              c: 2,
+              d: "3",
+            },
+            "b.a": 1,
+            "b.b": 2,
+            "b.c": "3",
+            "b.c.a": 4,
+            "b.c.b": 5,
+            c: {
+              a: 1,
+              b: 2,
+              c: "3",
+            },
+          }),
+          new PowerSettingsJsonObjectSource(context, "Workspace", {
+            c: {
+              a: 9,
+              b: 8,
+              c: 7,
+              d: 7,
+            },
+          }),
+        ],
+        (context) => [
+          new PowerSettingsTextSetting(context, "a", "Something or other"),
+          new PowerSettingsTextSetting(context, "b.a", "Other thing"),
+          new PowerSettingsTextSetting(context, "c", "Yolo"),
+        ]
+      );
+
+      console.log('Printing for identifier which has a value in the default source and the workspace source, but not a setting')
+      console.log(ps.getSetting("a.b"));
+      console.log(ps.getSettingValue("a.b"));
+
+      console.log('Printing for identifier which has a value in the default source and the workspace source and a setting')
+      console.log(ps.getSetting("b.a"));
+      console.log(ps.getSettingValue("b.a"));
+
+      console.log('Printing for identifier which does not have a value in the default source but does have a value in the workspace source and has a setting')
+      console.log(ps.getSetting("c.d"));
+      console.log(ps.getSettingValue("c.d"));
+
+      console.log('Printing for identifier which does not have a value in the either source and does not have a setting')
+      console.log(ps.getSetting("z.z"));
+      console.log(ps.getSettingValue("z.z"));
+    </script>
+  </head>
+  <body></body>
+</html>
